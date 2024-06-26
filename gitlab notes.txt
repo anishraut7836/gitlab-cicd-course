@@ -1,0 +1,45 @@
+1. Gitlab has 5 default stages.
+- .pre
+- build
+- test
+- deploy
+- .post
+
+2. docker permission issue
+sudo chmod 666 /var/run/docker.sock
+
+3. Runner install
+
+3.1 print the system arch
+#dpkg --print-architecture
+
+3.2 download the binary
+Refer the below link.
+https://docs.gitlab.com/runner/install/linux-manually.html
+
+update the ${arch}
+#curl -LJO "https://s3.dualstack.us-east-1.amazonaws.com/gitlab-runner-downloads/latest/deb/gitlab-runner_${arch}.deb"
+#curl -LJO "https://s3.dualstack.us-east-1.amazonaws.com/gitlab-runner-downloads/latest/deb/gitlab-runner_amd64.deb"
+
+3.2 Install the binary
+
+#dpkg -i gitlab-runner_<arch>.deb
+#dpkg -i gitlab-runner_amd64.deb
+
+3.3 check the version
+#gitlab-runner -v
+
+4. Register the runner using below command and put the URL and token (get from project setting)
+
+#gitlab-runner register
+
+#gitlab-runner restart
+#gitlab-runner status
+
+*** allow port 2376 to allow communication between Gitlab runner and GitLab.com
+
+
+*******
+Docker login
+
+docker login  -u anishkumar5255
